@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - octoscrap_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password123
+      POSTGRES_USER: octoscrap
+      POSTGRES_DB: octoscrap_production
+    ports:
+      - "5432:5432"
+  backend:
+    image: ruby:3.4
+    volumes:
+      - ./backend:/app
+    environment:
+      DATABASE_URL: postgresql://octoscrap:password123@db/octoscrap_production
+      RAILS_ENV: production
+      GITHUB_ACCESS_TOKEN: your_github_token_here
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    command: bash
+volumes:
+  octoscrap_data:
