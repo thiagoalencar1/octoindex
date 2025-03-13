@@ -15,7 +15,7 @@ class Api::V1::GithubProfilesController < ApplicationController
 
   # POST /github_profiles
   def create
-    url = params[:url]
+    url = github_profile_params[:url]
     github_scraper = GithubScraper.new(url)
     profile_data = github_scraper.fetch_profile_data
 
@@ -47,12 +47,10 @@ class Api::V1::GithubProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_github_profile
       @github_profile = GithubProfile.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def github_profile_params
       params.require(:github_profile).permit(:url)
     end
