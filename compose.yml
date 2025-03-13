@@ -1,5 +1,6 @@
 services:
   db:
+    container_name: database
     image: postgres:16
     volumes:
       - octoscrapper_data:/var/lib/postgresql/data
@@ -7,18 +8,41 @@ services:
       .env
     ports:
       - "5432:5432"
+
   backend:
+    container_name: backend
     image: ruby:3.4
-    volumes:
-      - ./backend:/app
+    working_dir: /app
     env_file:
       .env
     depends_on:
       - db
     ports:
       - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - rubygems:/usr/local/bundle
     tty: true
     stdin_open: true
     command: bash
+
+  frontend:
+    container_name: frontend
+    image: node:22
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    env_file:
+      .env
+    ports:
+      - "5173:5173"
+      - "80:80"
+    depends_on:
+      - backend
+    tty: true
+    stdin_open: true
+    command: bash
+
 volumes:
   octoscrapper_data:
+  rubygems:
