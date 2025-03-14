@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'  
 import Navbar from './components/Navbar';
 import ProfileCard from './components/ProfileCard';
+import NewProfile from './components/NewProfile';
 
 interface GitHubProfile {
   id: number;
@@ -36,10 +37,11 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto">
-        <h1 className="title">Scraped Profiles</h1>
+      <div className="h-full min-h-screen mx-auto w-full pr-20 pl-20 container">
+        <div className="flex justify-center m-10"><NewProfile /></div>
+        <h1 className="text-5xl font-bold flex justify-center pb-10">Scraped Profiles</h1>
         <div className="profiles-grid">
-          {profiles.map(profile => (
+          {profiles.slice().reverse().map(profile => (
             <div key={profile.id} className="profile-card">
               <ProfileCard
                 imageUrl="https://avatars.githubusercontent.com/u/14118336?v=4"

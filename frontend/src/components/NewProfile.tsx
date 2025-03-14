@@ -34,13 +34,12 @@ const NewProfile: React.FC = () => {
 
   return (
     <div>
-      <label htmlFor="my_modal_6" className="btn">add new profile</label>
+      <label htmlFor="my_modal_6" className="btn">scrape new github profile</label>
 
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
       <div className="modal" role="dialog">
         <div className="modal-box">
           <h3 className="text-lg font-bold">Hello!</h3>
-          <p className="py-4">This modal works with a hidden checkbox!</p>
           <form onSubmit={handleSubmit}>
             <label className="input validator">
               <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

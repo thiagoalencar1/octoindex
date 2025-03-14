@@ -26,21 +26,17 @@ interface ProfileCardProps {
   imageUrl: string;
   username: string;
   githubUrl: string;
-  // onWatch: () => void;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ imageUrl, username, githubUrl }) => {
   return (
     <div className="card card-side bg-base-100 shadow-sm">
       <figure>
-        <img src={imageUrl} alt={username} className="max-h-75" />
+        <img src={imageUrl} alt={username} />
       </figure>
       <div className="card-body min-w-75">
         <h2 className="card-title">{username}</h2>
-        <p>{githubUrl}</p>
-        {/* <div className="card-actions justify-end">
-          <button className="btn btn-primary" onClick={onWatch}>Watch</button>
-        </div> */}
+        <p><a href={githubUrl} target='_blank'>{githubUrl}</a></p>
       </div>
     </div>
   );
