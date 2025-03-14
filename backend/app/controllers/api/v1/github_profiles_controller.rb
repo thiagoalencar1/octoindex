@@ -52,6 +52,10 @@ class Api::V1::GithubProfilesController < ApplicationController
     end
 
     def github_profile_params
-      params.require(:github_profile).permit(:url)
+      if params[:github_profile] and params[:github_profile][:url]
+        params.require(:github_profile).permit(:url)
+      else
+        params.permit(:url)
+      end
     end
 end

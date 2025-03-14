@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, cupcake;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.profile-card {
+  display: flex;
+  justify-content: center;
+}
