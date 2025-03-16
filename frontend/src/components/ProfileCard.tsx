@@ -1,19 +1,5 @@
 import React from 'react';
-interface ProfileData {
-  username: string;
-  image_url: string;
-  githubUrl: string;
-  followers?: number | string;
-  following?: number | string;
-  stars?: number | string;
-  contributions?: number | string;
-  organization?: string;
-  location?: string;
-}
-
-interface ProfileCardProps {
-  profile: ProfileData;
-}
+import { ProfileCardProps } from '../types';
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
   return (
@@ -24,7 +10,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
       <div className="card-body min-w-75">
         <h2 className="card-title">{profile.username}</h2>
         <ul>
-        <li><a href={profile.githubUrl} target='_blank'>{profile.githubUrl}</a></li>
+          <li><a href={profile.url} target='_blank'>{profile.url}</a></li>
+          <li><a href={profile.short_url} target='_blank'>{profile.short_url}</a></li>
+          <li><span className="font-bold">Followers:</span> {profile.followers}</li>
           <li><span className="font-bold">Followers:</span> {profile.followers}</li>
           <li><span className="font-bold">Following:</span> {profile.following}</li>
           <li><span className="font-bold">Stars:</span> {profile.stars}</li>
