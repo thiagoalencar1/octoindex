@@ -30,6 +30,25 @@ class Api::V1::GithubProfilesController < ApplicationController
     render json: { error: e.message }, status: :unprocessable_entity
   end
 
+  def search
+    query = params[:query].to_s.strip
+    
+    if query.present?
+      @github_profiles = GithubProfile.where(
+        "username ILIKE :query OR
+        followers::text ILIKE :query OR
+        following::text ILIKE :query OR
+        stars::text ILIKE :query OR
+        contributions::text ILIKE :query",   
+        query: "%#{query}%"
+      )
+    else
+      @github_profiles = GithubProfile.none
+    end
+    
+    render json: @github_profiles
+  end
+
   # PATCH/PUT /github_profiles/1
   def update
     if @github_profile.update(github_profile_params)
