@@ -13,7 +13,7 @@ RSpec.describe "/api/v1/github_profiles", type: :request do
     {
       username: 'example',
       url: valid_github_url
-    }
+    } 
   end
 
   describe "GET /index" do
@@ -37,13 +37,13 @@ RSpec.describe "/api/v1/github_profiles", type: :request do
       it "creates a new GithubProfile" do
         expect {
           post api_v1_github_profiles_path,
-               params: { github_profile: { url: valid_github_url } }, headers: valid_headers, as: :json
+               params: { github_profile: { url_or_username: valid_github_url } }, headers: valid_headers, as: :json
         }.to change(GithubProfile, :count).by(1)
       end
 
       it "renders a JSON response with the new github_profile" do
         post api_v1_github_profiles_path,
-             params: { github_profile: { url: valid_github_url } }, headers: valid_headers, as: :json
+             params: { github_profile: { url_or_username: valid_github_url } }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -53,13 +53,13 @@ RSpec.describe "/api/v1/github_profiles", type: :request do
       it "does not create a new GithubProfile" do
         expect {
           post api_v1_github_profiles_path,
-               params: { github_profile: { url: invalid_github_url } }, headers: valid_headers, as: :json
+               params: { github_profile: { url_or_username: invalid_github_url } }, headers: valid_headers, as: :json
         }.to change(GithubProfile, :count).by(0)
       end
 
       it "renders a JSON response with errors for the new github_profile" do
         post api_v1_github_profiles_path,
-             params: { github_profile: { url: invalid_github_url } }, headers: valid_headers, as: :json
+             params: { github_profile: { url_or_username: invalid_github_url } }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
