@@ -15,13 +15,11 @@ class Api::V1::GithubProfilesController < ApplicationController
 
   # POST /github_profiles
   def create
-    url = github_profile_params[:url]
-    github_scraper = GithubScraper.new(url)
-    profile_data = github_scraper.fetch_profile_data
+    url_or_username = github_profile_params[:url_or_username]
+    scraped_profile = GithubScraper.new(url_or_username).call
 
-    @github_profile = GithubProfile.find_or_initialize_by(username: profile_data[:username]) do
-      it.url = url
-    end
+    @github_profile = GithubProfile.find_or_initialize_by(username: scraped_profile[:username])
+    @github_profile.assign_attributes(scraped_profile)
 
     if @github_profile.save
       render json: @github_profile, status: :created
@@ -52,10 +50,10 @@ class Api::V1::GithubProfilesController < ApplicationController
     end
 
     def github_profile_params
-      if params[:github_profile] and params[:github_profile][:url]
-        params.require(:github_profile).permit(:url)
+      if params[:github_profile] and params[:github_profile][:url_or_username]
+        params.require(:github_profile).permit(:url_or_username)
       else
-        params.permit(:url)
+        params.permit(:url_or_username)
       end
     end
 end

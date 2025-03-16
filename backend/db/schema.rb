@@ -17,6 +17,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_110145) do
   create_table "github_profiles", force: :cascade do |t|
     t.string "username"
     t.string "url"
+    t.string "short_url"
+    t.integer "followers"
+    t.integer "following"
+    t.integer "stars"
+    t.integer "contributions"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

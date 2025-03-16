@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default, cupcake;
+  themes: light --default, lofi;
 }
 
 .title {
@@ -13,9 +13,36 @@
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 16px;
   padding: 16px;
+  border-radius: 10px;
 }
+
+/* @media (min-width: 600px) {
+  .profiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .profiles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
 
 .profile-card {
   display: flex;
   justify-content: center;
+  figure {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.flash-message {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: center;
 }
