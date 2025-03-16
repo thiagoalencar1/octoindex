@@ -35,11 +35,12 @@ class Api::V1::GithubProfilesController < ApplicationController
     
     if query.present?
       @github_profiles = GithubProfile.where(
-        "username ILIKE :query OR
-        followers::text ILIKE :query OR
-        following::text ILIKE :query OR
-        stars::text ILIKE :query OR
-        contributions::text ILIKE :query",   
+        "
+          name ILIKE :query OR
+          username ILIKE :query OR
+          location ILIKE :query OR
+          organization ILIKE :query
+        ",   
         query: "%#{query}%"
       )
     else

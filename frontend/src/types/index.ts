@@ -1,7 +1,9 @@
 export interface ProfileData {
+  name?: string;
   username: string;
+  short_url: string;
   image_url: string;
-  githubUrl: string;
+  url: string;
   followers?: number | string;
   following?: number | string;
   stars?: number | string;
