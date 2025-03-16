@@ -37,3 +37,12 @@
     object-fit: cover;
   }
 }
+
+.flash-message {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
