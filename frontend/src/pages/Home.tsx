@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
 import ProfileCard from '../components/ProfileCard';
 import { ProfileData } from '../types';
 

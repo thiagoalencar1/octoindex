@@ -10,6 +10,7 @@ class GithubScraper < ApplicationService
   USERNAME_PATTERN = %r{\A[\w-]+\z}
 
   SELECTORS = {
+    name: '.p-name.vcard-fullname.d-block',
     username: '.p-nickname.vcard-username.d-block',
     followers: 'a[href$="tab=followers"] .text-bold',
     following: 'a[href$="tab=following"] .text-bold',
@@ -50,6 +51,7 @@ class GithubScraper < ApplicationService
 
   def profile_serializer
     {
+      name: @profile_page.css(SELECTORS[:name]).text.strip,
       username: @profile_page.css(SELECTORS[:username]).text.strip,
       url: @url,
       short_url: "short_url", # ZipUrl.new(@url).call
@@ -58,8 +60,8 @@ class GithubScraper < ApplicationService
       stars: @profile_page.css(SELECTORS[:stars]).first&.text&.strip || 0,
       contributions: fetch_contributions,
       image_url: @profile_page.css(SELECTORS[:profile_image]).first['src'].split("?").first,
-      # organization: @profile_page.css(SELECTORS[:organization]).text.strip.presence,
-      # location: @profile_page.css(SELECTORS[:location]).text.strip.presence
+      organization: @profile_page.css(SELECTORS[:organization]).text.strip.presence,
+      location: @profile_page.css(SELECTORS[:location]).text.strip.presence
     }
   end
 

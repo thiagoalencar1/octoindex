@@ -15,6 +15,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_110145) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "github_profiles", force: :cascade do |t|
+    t.string "name"
     t.string "username"
     t.string "url"
     t.string "short_url"
@@ -23,6 +24,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_110145) do
     t.integer "stars"
     t.integer "contributions"
     t.string "image_url"
+    t.string "location"
+    t.string "organization"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
