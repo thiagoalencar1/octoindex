@@ -76,7 +76,7 @@ class GithubScraper < ApplicationService
 
     contributions_page = Nokogiri::HTML(contributions_response.body)
     contributions_text = contributions_page.css(SELECTORS[:contributions]).text.strip
-    contributions_text.split.first
+    contributions_text.split.first.gsub(/[.,]/, '')
   end
 
   def validate_input!
