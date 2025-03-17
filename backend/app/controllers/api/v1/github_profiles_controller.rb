@@ -66,7 +66,7 @@ class Api::V1::GithubProfilesController < ApplicationController
 
   private
     def set_github_profile
-      @github_profile = GithubProfile.find(params[:id])
+      @github_profile = GithubProfile.find_by(username: params[:username])
     end
 
     def github_profile_params
