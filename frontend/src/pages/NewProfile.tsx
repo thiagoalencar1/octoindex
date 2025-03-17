@@ -76,10 +76,13 @@ const NewProfile = () => {
       <div className="container mx-auto px-4">
         
         <div className="my-8">
-          <div className="flex justify-center items-center mb-6">
-            <Link to="/" className="btn btn-ghost mr-4">
+          <div className="flex justify-center items-center mb-4">
+            <Link to="/" className="btn btn-ghost">
               &larr; Voltar
             </Link>
+          </div>
+
+          <div className="flex justify-center items-center mb-6">
             <h1 className="text-3xl font-bold">Adicionar Novo Perfil GitHub</h1>
           </div>
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ProfileCardProps } from '../types';
 import { ProfileData } from '../types';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Profile: React.FC<ProfileCardProps> = ({}) => {
   const [profile, setProfile] = useState<ProfileData[]>([]);
@@ -25,6 +25,11 @@ const Profile: React.FC<ProfileCardProps> = ({}) => {
 
   return (
     <div className="h-full min-h-screen mx-auto w-full pr-20 pl-20 mt-20">
+      <div className="flex justify-center items-center mb-6">
+        <Link to="/" className="btn btn-ghost mr-4">
+          &larr; Voltar
+        </Link>
+      </div>
       <div className="card card-side bg-base-100 shadow-lg max-w-[900px] mx-auto">
         <figure>
           <img src={profile.image_url} alt={profile.username} />
