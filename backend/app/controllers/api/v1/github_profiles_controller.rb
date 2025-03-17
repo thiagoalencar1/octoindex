@@ -9,9 +9,13 @@ class Api::V1::GithubProfilesController < ApplicationController
   end
 
   # GET /github_profiles/1
-  def show
+def show
+  if @github_profile
     render json: @github_profile
+  else
+    render json: { error: "GitHub profile not found" }, status: :not_found
   end
+end
 
   # POST /github_profiles
   def create
@@ -35,13 +39,8 @@ class Api::V1::GithubProfilesController < ApplicationController
     
     if query.present?
       @github_profiles = GithubProfile.where(
-        "
-          name ILIKE :query OR
-          username ILIKE :query OR
-          location ILIKE :query OR
-          organization ILIKE :query
-        ",   
-        query: "%#{query}%"
+        ["name ILIKE ? OR username ILIKE ? OR location ILIKE ? OR organization ILIKE ?", 
+         "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"]
       )
     else
       @github_profiles = GithubProfile.none
@@ -71,9 +70,15 @@ class Api::V1::GithubProfilesController < ApplicationController
 
     def github_profile_params
       if params[:github_profile] and params[:github_profile][:url_or_username]
-        params.require(:github_profile).permit(:url_or_username)
+        params.require(:github_profile).permit(
+          :url_or_username, :username, :name, :location, :organization, :followers,
+          :following, :stars, :contributions, :image_url, :url, :short_url
+          )
       else
-        params.permit(:url_or_username)
+        params.permit(
+          :github_profile,:url_or_username, :username, :name, :location, :organization, :followers,
+          :following, :stars, :contributions, :image_url, :url, :short_url
+          )
       end
     end
 end
