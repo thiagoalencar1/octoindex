@@ -56,6 +56,15 @@ const Home = () => {
           />
         </div>
 
+        {profiles.length <= 0 && (
+          <>
+            <div className="divider"></div>
+            <div className="flex justify-center text-xl">
+              Nenhum perfil cadastrado até agora.
+            </div>
+          </>
+          )}
+
         {profiles.length > 0 && (<div className="divider"></div>)}
 
         <div className="profiles-grid mb-10">
