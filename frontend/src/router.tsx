@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import NewProfile from './pages/NewProfile';
+import Profile from './pages/Profile';
+
 
 const router = createBrowserRouter([
   {
@@ -10,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: '/new-profile',
     element: <NewProfile />,
+  },
+  {
+    path: '/profile/:username',
+    element: <Profile />,
   },
 ]);
 
