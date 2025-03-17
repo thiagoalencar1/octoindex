@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProfileCardProps } from '../types';
+import { Link } from 'react-router-dom';
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
   return (
@@ -8,7 +9,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
         <img src={profile.image_url} alt={profile.username} />
       </figure>
       <div className="card-body min-w-75">
-        <h2 className="card-title">{profile.name || profile.username}</h2>
+        <Link to={`/profile/${profile.username}`} className="btn btn-primary">
+          <h2 className="card-title">{profile.name || profile.username}</h2>
+        </Link>
         <ul>
           {profile.name && (
             <li><span className="font-bold">Username:</span> {profile.username}</li>

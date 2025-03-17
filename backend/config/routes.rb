@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :github_profiles do
+      resources :github_profiles, param: :username do
         collection do
           get :search
         end

@@ -27,7 +27,7 @@ RSpec.describe "/api/v1/github_profiles", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       github_profile = GithubProfile.create!(valid_attributes)
-      get api_v1_github_profile_path(github_profile), as: :json
+      get api_v1_github_profile_path(github_profile.username), as: :json
       expect(response).to be_successful
     end
   end
@@ -104,7 +104,7 @@ RSpec.describe "/api/v1/github_profiles", type: :request do
     it "destroys the requested github_profile" do
       github_profile = GithubProfile.create!(valid_attributes)
       expect {
-        delete api_v1_github_profile_path(github_profile), headers: valid_headers, as: :json
+        delete api_v1_github_profile_path(github_profile.username), headers: valid_headers, as: :json
       }.to change(GithubProfile, :count).by(-1)
     end
   end
