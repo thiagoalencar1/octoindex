@@ -56,10 +56,6 @@ const NewProfile = () => {
           throw new Error('Resposta da API não foi bem-sucedida');
         }
 
-        const data = await response.json();
-        console.log('Response data:', data);
-        
-        // Redirecionar para a página inicial com uma mensagem de sucesso
         navigate('/', { state: { flashMessage: 'Novo perfil adicionado com sucesso!' } });
 
       } catch (error) {
