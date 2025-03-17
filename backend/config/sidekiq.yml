@@ -1,0 +1,13 @@
+:concurrency: 3
+:timeout: 60
+:verbose: true
+:queues:
+  - default
+
+:scheduler:
+  :schedule:
+    reset_database_job:
+      cron: '0 0 * * *'
+      class: ResetDatabaseJob
+      queue: default
+      description: "This job resets the database every day at midnight"

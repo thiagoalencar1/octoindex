@@ -3,7 +3,7 @@ services:
     container_name: database
     image: postgres:16
     volumes:
-      - octoscrapper_data:/var/lib/postgresql/data
+      - octoindex_data:/var/lib/postgresql/data
     env_file:
       .env
     ports:
@@ -24,25 +24,51 @@ services:
       - rubygems:/usr/local/bundle
     tty: true
     stdin_open: true
-    command: bash
+    command: bash -c "rm -rf tmp/pids/server.pid && bundle install && bin/setup && rails s -b 0.0.0.0 -p 3000"
+
+  sidekiq:
+    image: ruby:3.4
+    container_name: sidekiq
+    command: bash -c "bundle exec sidekiq"
+    working_dir: /app
+    env_file:
+      - .env
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+      - backend
+      - redis
+    volumes:
+      - ./backend:/app
+      - rubygems:/usr/local/bundle
+
+  redis:
+    image: redis:7.0.15-alpine
+    container_name: redis
+    ports: [6379:6379]
+    volumes:
+        - redis_data:/data
 
   frontend:
     container_name: frontend
-    image: node:22
+    build:
+      context: ./frontend
     working_dir: /app
     volumes:
       - ./frontend:/app
+      - ./frontend/dist:/usr/share/nginx/html
     env_file:
       .env
     ports:
-      - "5173:5173"
-      - "80:80"
+      - "80:5173"
     depends_on:
       - backend
     tty: true
     stdin_open: true
-    command: bash
+    command: bash -c "npm run dev -- --host 0.0.0.0"
 
 volumes:
-  octoscrapper_data:
+  octoindex_data:
   rubygems:
+  redis_data:
