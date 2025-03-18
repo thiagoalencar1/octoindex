@@ -81,6 +81,9 @@ Uma lista de melhorias que podem ser feitas no projeto:
 - Usar uma gem como Ransak para otimizar a busca. [back]
 - Aprimoramento das configurações de containerização CI/CD. [SRE]
 
+## Acesso ao APP
+[Experimente a aplicação aqui](http://3.145.73.162/)
+
 ## Contato
 Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato:
 - **Nome:** Thiago Alencar

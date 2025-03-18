@@ -24,7 +24,7 @@ services:
       - rubygems:/usr/local/bundle
     tty: true
     stdin_open: true
-    command: bash #-c "rm -rf tmp/pids/server.pid && bundle install && bin/setup && rails s -b 0.0.0.0 -p 3000"
+    command: bash -c "rm -rf tmp/pids/server.pid && bundle install && bin/setup && rails s -b 0.0.0.0 -p 3000"
 
   sidekiq:
     image: ruby:3.4
