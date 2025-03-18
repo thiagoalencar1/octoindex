@@ -80,9 +80,9 @@ Uma lista de melhorias que podem ser feitas no projeto:
 - Internacionalização da aplicação. [front+back]
 - Usar uma gem como Ransak para otimizar a busca. [back]
 - Aprimoramento das configurações de containerização CI/CD. [SRE]
-- O controller principal da API tem funções que poderiam ser dividido outros controllers ou services (como o search, por exemplo). [back, refactor]
-- O model do perfil pode ser melhorado sendo dividido em outros models (como um model para cuidar de usuário e url e outro para os demais detalhes). [back, refactor]
-- Conforme item anterior, a aplicação pode ser modularizada para lidar com outras fontes de dados como Twitter, por exemplo. [back]
+- O controller principal da API tem funções que poderiam ser divididas em outros controllers ou services (como o search, por exemplo). [back, refactor]
+- O model do perfil pode ser melhorado sendo dividido em outros models (como um model para cuidar do username e url e outro para os demais detalhes). [back, refactor]
+- Conforme item anterior, a aplicação pode ser modularizada para lidar com outras fontes de dados como, por exemplo, Twitter, Facebook, Instagram. [back]
 - O sistema de encurtamento de urls também pode ser melhorado permitindo que o usuário escolha o encurtador que deseja usar. [back]
 
 ## Acesso ao APP
