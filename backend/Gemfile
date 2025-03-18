@@ -11,8 +11,8 @@ gem "kamal", require: false
 gem "nokogiri"
 gem "faraday"
 gem "rack-cors"
-gem 'bitly'
 gem "thruster", require: false
+gem "tinyurl_shortener"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

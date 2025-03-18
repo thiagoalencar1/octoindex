@@ -1,4 +1,4 @@
-class ZipUrl
+class ZipUrl < ApplicationService
   attr_reader :url
 
   def initialize(url)
@@ -6,15 +6,9 @@ class ZipUrl
   end
 
   def call
-    response = client.shorten(long_url: @url)
-    response.link
+    response = TinyurlShortener.shorten(@url)
+    response.body
   rescue StandardError => e
     Rails.logger.error "Error shortening URL: #{e.message}"
-  end
-
-  private
-
-  def client
-    client ||= Bitly::API::Client.new(token: ENV.fetch('BITLY_TOKEN'))
   end
 end

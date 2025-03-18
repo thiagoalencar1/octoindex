@@ -54,7 +54,7 @@ class GithubScraper < ApplicationService
       name: @profile_page.css(SELECTORS[:name]).text.strip,
       username: @profile_page.css(SELECTORS[:username]).text.strip,
       url: @url,
-      short_url: "https://shorturl.com", # ZipUrl.new(@url).call
+      short_url: ZipUrl.new(@url).call,
       followers: @profile_page.css(SELECTORS[:followers]).text.strip,
       following: @profile_page.css(SELECTORS[:following]).text.strip,
       stars: @profile_page.css(SELECTORS[:stars]).first&.text&.strip || 0,
