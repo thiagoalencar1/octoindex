@@ -1,7 +1,7 @@
 services:
   db:
     container_name: database
-    image: postgres:16
+    image: postgres:17
     volumes:
       - octoindex_data:/var/lib/postgresql/data
     env_file:
