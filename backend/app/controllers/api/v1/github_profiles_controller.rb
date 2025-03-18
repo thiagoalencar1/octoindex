@@ -8,7 +8,7 @@ class Api::V1::GithubProfilesController < ApplicationController
     render json: @github_profiles
   end
 
-  # GET /github_profiles/1
+  # GET /github_profiles/username
 def show
   if @github_profile
     render json: @github_profile
@@ -49,7 +49,7 @@ end
     render json: @github_profiles
   end
 
-  # PATCH/PUT /github_profiles/1
+  # PATCH/PUT /github_profiles/username
   def update
     if @github_profile.update(github_profile_params)
       render json: @github_profile
@@ -58,7 +58,7 @@ end
     end
   end
 
-  # DELETE /github_profiles/1
+  # DELETE /github_profiles/username
   def destroy
     @github_profile.destroy!
   end
@@ -70,15 +70,16 @@ end
 
     def github_profile_params
       if params[:github_profile] and params[:github_profile][:url_or_username]
-        params.require(:github_profile).permit(
-          :url_or_username, :username, :name, :location, :organization, :followers,
-          :following, :stars, :contributions, :image_url, :url, :short_url
-          )
+        params.require(:github_profile).permit(permitted_params)
       else
-        params.permit(
-          :github_profile,:url_or_username, :username, :name, :location, :organization, :followers,
-          :following, :stars, :contributions, :image_url, :url, :short_url
-          )
+        params.permit(permitted_params)
       end
+    end
+
+    def permitted_params
+      [
+        :url_or_username, :username, :name, :location, :organization, :followers,
+        :following, :stars, :contributions, :image_url, :url, :short_url
+      ]
     end
 end

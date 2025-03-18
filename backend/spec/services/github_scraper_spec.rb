@@ -34,21 +34,6 @@ RSpec.describe GithubScraper do
       allow(scraper).to receive(:organization).and_return('Example Org')
       allow(scraper).to receive(:location).and_return('Example Location')
     end
-
-    xit 'returns a hash with profile data' do
-      profile_data = scraper.send(:profile_serializer)
-
-      expect(profile_data).to include(
-        username: 'validuser',
-        followers: 100,
-        following: 50,
-        stars: 5,
-        contributions: '10',
-        image_url: 'https://example.com/image.jpg',
-        organization: 'Example Org',
-        location: 'Example Location'
-      )
-    end
   end
 
   describe '#fetch_contributions' do
@@ -115,6 +100,26 @@ RSpec.describe GithubScraper do
 
         expect { scraper.send(:make_request, valid_url) }.to raise_error(GithubScraper::NetworkError)
       end
+    end
+
+    it 'handles timeout errors' do
+      scraper = GithubScraper.new('octocat')
+      
+      allow(Faraday).to receive(:get).and_raise(Faraday::TimeoutError.new('Request timed out'))
+      
+      expect {
+        scraper.send(:make_request, 'https://github.com/octocat')
+      }.to raise_error(GithubScraper::NetworkError, /Request timed out/)
+    end
+
+    it 'handles general Faraday errors' do
+      scraper = GithubScraper.new('octocat')
+      
+      allow(Faraday).to receive(:get).and_raise(Faraday::Error.new('Unknown error'))
+      
+      expect {
+        scraper.send(:make_request, 'https://github.com/octocat')
+      }.to raise_error(GithubScraper::GithubScraperError, /Error fetching data from GitHub/)
     end
   end
 end

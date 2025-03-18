@@ -66,40 +66,27 @@ RSpec.describe "/api/v1/github_profiles", type: :request do
     end
   end
 
-  xdescribe "PATCH /update" do
+  describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested github_profile" do
         github_profile = GithubProfile.create!(valid_attributes)
-        patch api_v1_github_profile_path(github_profile),
-              params: { github_profile: new_attributes }, headers: valid_headers, as: :json
+        patch api_v1_github_profile_path(github_profile.username),
+              params: { name: "Updated Name" }, headers: valid_headers, as: :json
         github_profile.reload
-        skip("Add assertions for updated state")
+        
+        expect(github_profile.name).to eq("Updated Name")
       end
 
       it "renders a JSON response with the github_profile" do
         github_profile = GithubProfile.create!(valid_attributes)
-        patch github_profile_url(github_profile),
-              params: { github_profile: new_attributes }, headers: valid_headers, as: :json
+        patch api_v1_github_profile_path(github_profile.username),
+              params: { name: "Updated Name" }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
-
-    context "with invalid parameters" do
-      it "renders a JSON response with errors for the github_profile" do
-        github_profile = GithubProfile.create!(valid_attributes)
-        patch github_profile_url(github_profile),
-              params: { github_profile: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
   end
-
   describe "DELETE /destroy" do
     it "destroys the requested github_profile" do
       github_profile = GithubProfile.create!(valid_attributes)
