@@ -4,8 +4,7 @@ import { ProfileData } from '../types';
 
 const Home = () => {
   const [profiles, setProfiles] = useState<ProfileData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [filteredProfiles, setFilteredProfiles] = useState([]);
+  const [filteredProfiles, setFilteredProfiles] = useState<ProfileData[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -18,14 +17,14 @@ const Home = () => {
       } catch (error) {
         console.error('Erro ao buscar perfis.', error);
       } finally {
-        setLoading(false);
+        // Loading state removed
       }
     };  
 
     fetchProfiles();
   }, []);
 
-  const handleSearch = async (query) => {
+  const handleSearch = async (query: string) => {
     setSearchQuery(query);
     
     if (!query.trim()) {
@@ -69,8 +68,8 @@ const Home = () => {
 
         <div className="profiles-grid mb-10">
           {filteredProfiles.slice().reverse().map(profile => (
-            <div key={profile.id} className="profile-card">
-              <ProfileCard profile={{...profile}} />
+            <div key={profile.username} className="profile-card">
+              <ProfileCard profile={profile} />
             </div>
           ))} 
         </div>
