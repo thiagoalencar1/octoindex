@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/v1/github_profiles');
+        const response = await fetch('http://3.145.73.162:3000/api/v1/github_profiles');
         const data = await response.json();
         setProfiles(data);
         setFilteredProfiles(data);
@@ -31,7 +31,7 @@ const Home = () => {
       setFilteredProfiles(profiles);
     } else {
       try {
-        const response = await fetch(`http://localhost:3000/api/v1/github_profiles/search?query=${encodeURIComponent(query)}`);
+        const response = await fetch(`http://3.145.73.162:3000/api/v1/github_profiles/search?query=${encodeURIComponent(query)}`);
         const data = await response.json();
         setFilteredProfiles(data);
       } catch (error) {

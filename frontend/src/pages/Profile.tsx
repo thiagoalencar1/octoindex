@@ -12,7 +12,7 @@ const Profile: React.FC = () => {
 
   const fetchProfile = async (username: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/github_profiles/${username}`);
+      const response = await fetch(`http://3.145.73.162:3000/api/v1/github_profiles/${username}`);
       const data = await response.json();
       setProfile(data);
     } catch (error) {
@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
   };
 
   const reloadProfile = async (username: string) => {
-    const apiUrl = `http://localhost:3000/api/v1/github_profiles?url_or_username=${username}`;
+    const apiUrl = `http://3.145.73.162:3000/api/v1/github_profiles?url_or_username=${username}`;
 
     try {
       const response = await fetch(apiUrl, {
@@ -58,7 +58,7 @@ const Profile: React.FC = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/github_profiles/${username}`, {
+      const response = await fetch(`http://3.145.73.162:3000/api/v1/github_profiles/${username}`, {
         method: 'DELETE',
       });
 

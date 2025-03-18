@@ -24,7 +24,7 @@ const EditProfile: React.FC = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/v1/github_profiles/${username}`);
+        const response = await fetch(`http://3.145.73.162:3000/api/v1/github_profiles/${username}`);
         const data = await response.json();
         setFormData({
           name: data.name || '',
@@ -55,7 +55,7 @@ const EditProfile: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/github_profiles/${username}`, {
+      const response = await fetch(`http://3.145.73.162:3000/api/v1/github_profiles/${username}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

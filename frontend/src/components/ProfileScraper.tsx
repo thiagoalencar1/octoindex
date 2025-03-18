@@ -40,7 +40,7 @@ const ProfileScraper: React.FC = () => {
     
     if (validateInput(url)) {
         
-      const apiUrl = `http://localhost:3000/api/v1/github_profiles?url_or_username=${encodeURIComponent(url)}`
+      const apiUrl = `http://3.145.73.162:3000/api/v1/github_profiles?url_or_username=${encodeURIComponent(url)}`
 
       try {
         const response = await fetch(apiUrl, {
