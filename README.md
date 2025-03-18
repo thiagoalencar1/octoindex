@@ -24,7 +24,7 @@ O projeto foi dividido em uma API backend escrita em Ruby on Rails e uma interfa
   - A página inicial exibe os perfis cadastrados e ao buscar.
 - Um job é executado para resetar a base de dados a cada 24 horas. Remove toda a base e adiciona apenas alguns perfis de exemplo.
 
-## Como executar este projetoDocker
+## Como executar este projeto (Docker)
 ### 1. Clone o repositório e dentro do diretório execute o comando:
 ```bash
 docker compose build
