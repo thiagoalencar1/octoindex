@@ -4,7 +4,8 @@
 Bem-vindo ao Octoindex! Este aplicativo permite o cadastro de perfis do Github através de scraping de informações. Este README fornece uma visão geral da configuração, uso e comandos necessários para desenvolvimento e testes do projeto.
 
 ![octoindex](https://github.com/user-attachments/assets/1b89463c-1b1b-4127-94ff-0d63d50daeed)
-**(aguarde enquanto o gif é carregado)**
+<br />
+*(aguarde enquanto o gif é carregado)*
 
 
 ## Descrição
