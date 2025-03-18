@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ProfileCardProps } from '../types';
 import { ProfileData } from '../types';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-const Profile: React.FC<ProfileCardProps> = ({}) => {
+const Profile: React.FC = () => {
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
