@@ -1,7 +1,11 @@
 # Octoindex
 
 ## Visão Geral
-Bem-vindo ao Octoindex! Este aplicativo permite o perfis do Github, realizem scraping de informações e exibam dados dos perfis. Este README fornece uma visão geral da configuração, uso e comandos necessários para desenvolvimento e testes do projeto.
+Bem-vindo ao Octoindex! Este aplicativo permite o cadastro de perfis do Github através de scraping de informações. Este README fornece uma visão geral da configuração, uso e comandos necessários para desenvolvimento e testes do projeto.
+
+![octoindex](https://github.com/user-attachments/assets/1b89463c-1b1b-4127-94ff-0d63d50daeed)
+**(aguarde enquanto o gif é carregado)**
+
 
 ## Descrição
 Esse projeto faz uso de webscraping para obter informações de um perfil do GitHub a partir da URL ou nome de usuário. O recurso de webscraping foi desenvolvido usando a gem Faraday para fazer requisições HTTP e da gem Nokogiri para selecionar informações da página usando seletores css.
