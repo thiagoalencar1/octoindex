@@ -36,16 +36,28 @@ class GithubScraper < ApplicationService
   private
 
   def normalize_input(input)
-    if input.match?(USERNAME_PATTERN) && !input.include?('/')
-      "https://github.com/#{input}"
-    elsif input.match?(GITHUB_URL_PATTERN)
-      if input.start_with?('http://', 'https://')
-        input
-      else
-        "https://#{input}"
-      end
+    return github_username_to_url(input) if username?(input)
+    return normalize_github_url(input) if github_url?(input)
+    input
+  end
+
+  def username?(input)
+    input.match?(USERNAME_PATTERN) && !input.include?('/')
+  end
+
+  def github_url?(input)
+    input.match?(GITHUB_URL_PATTERN)
+  end
+
+  def github_username_to_url(username)
+    "https://github.com/#{username}"
+  end
+
+  def normalize_github_url(url)
+    if url.start_with?('http://', 'https://')
+      url
     else
-      input
+      "https://#{url}"
     end
   end
 
