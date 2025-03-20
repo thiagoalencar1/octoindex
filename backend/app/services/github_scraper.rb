@@ -108,17 +108,17 @@ class GithubScraper < ApplicationService
     when 200
       response
     when 404
-      raise ProfileNotFoundError, "GitHub profile not found for URL: #{url}"
+      raise GithubScraper::ProfileNotFoundError, "GitHub profile not found for URL: #{url}"
     when 400..499
-      raise GithubScraperError, "Client error: #{response.status} for URL: #{url}"
+      raise GithubScraper::GithubScraperError, "Client error: #{response.status} for URL: #{url}"
     when 500..599
-      raise GithubScraperError, "Server error: #{response.status} for URL: #{url}"
+      raise GithubScraper::GithubScraperError, "Server error: #{response.status} for URL: #{url}"
     end
   rescue Faraday::ConnectionFailed => e
-    raise NetworkError, "Network error while connecting to GitHub: #{e.message}"
+    raise GithubScraper::NetworkError, "Network error while connecting to GitHub: #{e.message}"
   rescue Faraday::TimeoutError => e
-    raise NetworkError, "Request timed out: #{e.message}"
+    raise GithubScraper::NetworkError, "Request timed out: #{e.message}"
   rescue Faraday::Error => e
-    raise GithubScraperError, "Error fetching data from GitHub: #{e.message}"
+    raise GithubScraper::GithubScraperError, "Error fetching data from GitHub: #{e.message}"
   end
 end
