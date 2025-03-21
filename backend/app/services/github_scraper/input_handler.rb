@@ -7,17 +7,12 @@ class GithubScraper
 
     def initialize(input)
       @input = input
-      @scraper = GithubScraper
     end
 
     def normalize
-      @url = if username?(@input)
-              github_username_to_url(@input)
-            elsif github_url?(@input)
-              normalize_github_url(@input)
-            else
-              @input
-            end
+      @url = github_username_to_url(@input) if username?(@input)
+      @url = normalize_github_url(@input) if github_url?(@input)
+      @url ||= @input
       self
     end
 
@@ -43,10 +38,6 @@ class GithubScraper
 
     private
     
-    def username?(input)
-      input.match?(USERNAME_PATTERN) && !input.include?('/')
-    end
-
     def username?(input)
       input.match?(USERNAME_PATTERN) && !input.include?('/')
     end
