@@ -1,5 +1,5 @@
 class GithubScraper
-  class ProfileSerializer
+  class ProfileHandler
     SELECTORS = {
       name: '.p-name.vcard-fullname.d-block',
       username: '.p-nickname.vcard-username.d-block',

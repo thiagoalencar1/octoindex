@@ -38,10 +38,7 @@ end
     query = params[:query].to_s.strip
     
     if query.present?
-      @github_profiles = GithubProfile.where(
-        ["name ILIKE ? OR username ILIKE ? OR location ILIKE ? OR organization ILIKE ?", 
-         "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"]
-      )
+      @github_profiles = GithubProfile.search_by_attributes(query)
     else
       @github_profiles = GithubProfile.none
     end
