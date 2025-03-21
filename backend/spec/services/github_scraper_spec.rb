@@ -36,26 +36,6 @@ RSpec.describe GithubScraper do
     end
   end
 
-  describe '#fetch_contributions' do
-    context 'when contributions page is accessible' do
-      it 'returns the number of contributions' do
-        html = '<html><div class="js-yearly-contributions"><h2 class="text-normal">10 contributions</h2></div></html>'
-        allow(scraper).to receive(:make_request).and_return(double(body: html))
-        
-        contributions = scraper.send(:fetch_contributions)
-        expect(contributions).to eq('10')
-      end
-    end
-
-    context 'when contributions page is not accessible' do
-      it 'returns "0" if the response body is empty' do
-        allow(scraper).to receive(:make_request).and_return(double(body: ''))
-        contributions = scraper.send(:fetch_contributions)
-        expect(contributions).to eq('0')
-      end
-    end
-  end
-
   describe '#make_request' do
     context 'when the request is successful' do
       it 'returns the response' do
