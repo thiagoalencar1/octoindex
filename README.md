@@ -85,9 +85,6 @@ Uma lista de melhorias que podem ser feitas no projeto:
 - Conforme item anterior, a aplicação pode ser modularizada para lidar com outras fontes de dados como, por exemplo, Twitter, Facebook, Instagram. [back]
 - O sistema de encurtamento de urls também pode ser melhorado permitindo que o usuário escolha o encurtador que deseja usar. [back]
 
-## Acesso ao APP
-[Experimente a aplicação aqui](http://3.145.73.162/)
-
 ## Contato
 Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato:
 - **Nome:** Thiago Alencar
